@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone repository') {
             steps {
-                git 'https://your-repository-url.git'
+                git 'https://github.com/sheraztariq22/DevOps-Labs.git'
             }
         }
 
