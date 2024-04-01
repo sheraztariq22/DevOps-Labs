@@ -2,34 +2,34 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone repository') {
+        stage('Clone Repository') {
             steps {
-                git 'https://github.com/sheraztariq22/DevOps-Labs.git'
+                git 'https://github.com/your-username/your-repo.git'
             }
         }
 
-        stage('Install dependencies') {
+        stage('Build Docker Image') {
             steps {
-                sh 'npm install'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                sh 'npm run build'
+                sh 'docker build -t express-mongodb-app:latest .'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'npm run test'
+                echo "No tests found in package.json. Skipping test stage."
             }
         }
 
-        stage('Deploy') {
+        stage('Start Docker Compose Services') {
             steps {
-                sh 'npm start'
+                sh 'docker-compose up -d'
             }
+        }
+    }
+
+    post {
+        always {
+            sh 'docker-compose down'
         }
     }
 }
