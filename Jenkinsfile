@@ -10,7 +10,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                echo 'docker build -t express-mongodb-app:latest .'
+                sh 'docker build -t express-mongodb-app:latest .'
             }
         }
 
